@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Controls.Presentation, FMX.Edit;
+  FMX.Controls.Presentation, FMX.Edit, FMX.ScrollBox, FMX.Memo;
 
 type
   IMaquina = interface
@@ -15,7 +15,9 @@ type
     edtValor: TEdit;
     btnCalcularTroco: TButton;
     Label1: TLabel;
+    memTroco: TMemo;
     procedure edtValorExit(Sender: TObject);
+    procedure btnCalcularTrocoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,9 +31,26 @@ implementation
 
 {$R *.fmx}
 
+uses uMaquinaDeDinheiro;
+
+procedure TForm2.btnCalcularTrocoClick(Sender: TObject);
+var
+troco : TTroco;
+list : TList;
+i : integer;
+begin
+    troco := TTroco.Create;
+    List := troco.MontarTroco(StrToFloat(edtValor.Text));
+    for i := 0 to list.Count -1 do
+    begin
+      memTroco.Lines.Add(TTroco(list.Items[i]).toString);
+    end;
+
+end;
+
 procedure TForm2.edtValorExit(Sender: TObject);
 begin
-  edtValorExit := FormatFloat('###,###,##0.00', StrToFloat( StringReplace(edtValor.Text,'.','',[])));
+  edtValor.Text := FormatFloat('###,###,##0.00', StrToFloat( StringReplace(edtValor.Text,'.','',[])));
 end;
 
 end.

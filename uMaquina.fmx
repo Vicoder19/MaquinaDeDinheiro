@@ -2,8 +2,8 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Form2'
-  ClientHeight = 224
-  ClientWidth = 292
+  ClientHeight = 209
+  ClientWidth = 242
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -12,13 +12,16 @@ object Form2: TForm2
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 1
     FilterChar = '0123456789,.'
-    Position.X = 41.000000000000000000
-    Position.Y = 48.000000000000000000
+    Position.X = 9.000000000000000000
+    Position.Y = 27.000000000000000000
+    Size.Width = 119.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
     OnExit = edtValorExit
   end
   object btnCalcularTroco: TButton
-    Position.X = 151.000000000000000000
-    Position.Y = 48.000000000000000000
+    Position.X = 134.000000000000000000
+    Position.Y = 26.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
@@ -27,8 +30,8 @@ object Form2: TForm2
     OnClick = btnCalcularTrocoClick
   end
   object Label1: TLabel
-    Position.X = 41.000000000000000000
-    Position.Y = 25.000000000000000000
+    Position.X = 8.000000000000000000
+    Position.Y = 7.000000000000000000
     Size.Width = 218.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
@@ -37,13 +40,20 @@ object Form2: TForm2
   object memTroco: TMemo
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
-    Position.X = 41.000000000000000000
-    Position.Y = 76.000000000000000000
-    Size.Width = 180.000000000000000000
+    Position.X = 9.000000000000000000
+    Position.Y = 55.000000000000000000
+    Size.Width = 195.000000000000000000
     Size.Height = 119.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 4
-    Viewport.Width = 176.000000000000000000
+    TabOrder = 3
+    Viewport.Width = 191.000000000000000000
     Viewport.Height = 115.000000000000000000
+  end
+  object btnLimpar: TButton
+    Position.X = 124.000000000000000000
+    Position.Y = 179.000000000000000000
+    TabOrder = 4
+    Text = 'Limpar'
+    OnClick = btnLimparClick
   end
 end

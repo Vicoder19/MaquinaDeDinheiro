@@ -16,8 +16,10 @@ type
     btnCalcularTroco: TButton;
     Label1: TLabel;
     memTroco: TMemo;
+    btnLimpar: TButton;
     procedure edtValorExit(Sender: TObject);
     procedure btnCalcularTrocoClick(Sender: TObject);
+    procedure btnLimparClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,13 +41,19 @@ troco : TTroco;
 list : TList;
 i : integer;
 begin
-    troco := TTroco.Create;
-    List := troco.MontarTroco(StrToFloat(edtValor.Text));
-    for i := 0 to list.Count -1 do
-    begin
-      memTroco.Lines.Add(TTroco(list.Items[i]).toString);
-    end;
 
+  troco := TTroco.Create;
+  list := troco.MontarTroco(StrToFloat(edtValor.Text));
+  for i := 0 to list.Count -1 do
+  begin
+    memTroco.Lines.Add(TTroco(list.Items[i]).toString);
+  end;
+
+end;
+
+procedure TForm2.btnLimparClick(Sender: TObject);
+begin
+  memTroco.Lines.Clear;
 end;
 
 procedure TForm2.edtValorExit(Sender: TObject);

@@ -23,6 +23,7 @@ TTroco = class(TInterfacedObject,IMaquina)
   function GetTipo : TCedula;
   function GetQuantidade : Integer;
   procedure SetQuantidade (Quantidade : integer);
+  procedure SetTipo(Tipo : TCedula);
   function MontarTroco(Valor : Double) : TList;
   function toString() : string;
 
@@ -31,14 +32,17 @@ end;
 implementation
 
 uses
-  System.SysUtils;
+  System.SysUtils, System.Variants;
 var
  List : TList;
+ const Cedula: array[1..12] of Double = (100.00, 50.00, 20.00, 10.00, 5.00, 2.00, 1.00,
+                                         0.50, 0.25, 0.10, 0.05, 0.01 );
 { TTroco }
 
 constructor TTroco.Create(Tipo: TCedula; Quantidade: Integer);
 begin
   SetQuantidade(Quantidade);
+  SetTipo(Tipo);
 end;
 
 constructor TTroco.Create(AOwner: TComponent);
@@ -56,25 +60,21 @@ begin
 end;
 
 function TTroco.MontarTroco(Valor: Double): TList;
-const Cedula: array[1..12] of Double = (100.00, 50.00, 20.00, 10.00, 5.00, 2.00, 1.00,
-                                         0.50, 0.25, 0.10, 0.05, 0.01 );
 var Resto : Double;
     i : integer;
-    qtde : Int64;
-    teste : Double;
+    Qtde : Integer;
     Cedulas : TTroco;
 begin
   Resto := Valor;
   i := 1;
   List := TList.Create;
-  while Resto > 0 do
+  while Resto > 0.01 do
   begin
-    qtde := Trunc((Resto / Cedula[i]));
-    teste := Cedula[i];
-    if qtde > 0 then
+    Qtde := Trunc(Resto / Cedula[i]);
+    if Qtde > 0 then
     begin
-      Cedulas := TTroco.Create(TCedula(i), qtde);
-      Resto := Resto - Cedula[i] * qtde;
+      Cedulas := TTroco.Create(TCedula(i), Qtde);
+      Resto := RoundTo((Resto - Cedula[i] * Qtde), -2);
       List.Add(Cedulas);
     end;
 
@@ -89,9 +89,14 @@ begin
   FQuantidade := Quantidade;
 end;
 
+procedure TTroco.SetTipo(Tipo: TCedula);
+begin
+  FTipo := Tipo;
+end;
+
 function TTroco.toString: string;
 begin
-  Result := '' + inttostr(GetQuantidade);
+  Result := 'Cédula ' + FloatToStr(Cedula[Integer(getTipo)]) + ' --> Quantidade: ' + inttostr(GetQuantidade);
 end;
 
 end.

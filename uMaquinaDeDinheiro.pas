@@ -68,7 +68,7 @@ begin
   Resto := Valor;
   i := 1;
   List := TList.Create;
-  while Resto > 0.01 do
+  while Resto >= 0.01 do
   begin
     Qtde := Trunc(Resto / Cedula[i]);
     if Qtde > 0 then
@@ -78,7 +78,8 @@ begin
       List.Add(Cedulas);
     end;
 
-    i := i + 1;
+    if i <> Length(Cedula) then
+      i := i + 1;
 
   end;
   Result := List;

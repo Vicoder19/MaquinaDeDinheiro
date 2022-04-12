@@ -20,6 +20,7 @@ type
     procedure edtValorExit(Sender: TObject);
     procedure btnCalcularTrocoClick(Sender: TObject);
     procedure btnLimparClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -59,6 +60,11 @@ end;
 procedure TForm2.edtValorExit(Sender: TObject);
 begin
   edtValor.Text := FormatFloat('###,###,##0.00', StrToFloat( StringReplace(edtValor.Text,'.','',[])));
+end;
+
+procedure TForm2.FormShow(Sender: TObject);
+begin
+  edtValor.SetFocus;
 end;
 
 end.
